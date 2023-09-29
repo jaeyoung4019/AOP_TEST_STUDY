@@ -1,0 +1,40 @@
+spring:
+  profiles:
+    default: local
+  # Spring jwt
+  jwt:
+    header: Authorization
+    secret: dGVzdHRlc3RfdGVzdFNlY3VyaXR5X3Jvcm9ybw==  # https://www.convertstring.com/ko/EncodeDecode/Base64Encode
+  mvc:
+    path match:
+      matching-strategy: ant_path_matcher
+
+
+
+
+
+# CORS
+cors.allow.method: GET, POST, PATCH, DELETE, OPTIONS
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  type-handlers-package: test.security.security_test.handler
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  # Spring DataSource MySQL
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  # Spring DataSource postgresql
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    jdbc-url: jdbc:postgresql://localhost:5432/test
+    username: ijaeyeong
+    password: 1234
